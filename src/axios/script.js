@@ -61,29 +61,22 @@ const atualizarProduto = (e) => {
     const nomeAtualizado = document.querySelector('input[name="nomeProdutoAtualizar"]').value;
     const precoAtualizado = document.querySelector('input[name="precoProdutoAtualizar"]').value;
 
-    api.get('/produtos')
-        .then(res => {
-            const listaProdutos = res.data.listaProdutos;
-            const produtoParaAtualizar = listaProdutos.find(produto => nomeParaAtualizar === produto.nome);
-            api.put(`/produto/${produtoParaAtualizar.nome}`, {
-                nome: nomeAtualizado,
-                preco: precoAtualizado
-            })
-                .then(res => {
-                    console.log(res.data.message); // ou faça o que precisar com a mensagem de sucesso
-                })
-                .catch(err => {
-                    console.error('Erro ao atualizar produto:', err);
-                    // Adicione o tratamento de erro aqui
-                });
+    if(nomeParaAtualizar && nomeAtualizado && precoAtualizado) {
+
+        api.put(`/produtos/${nomeParaAtualizar}`, {
+            nome: nomeAtualizado,
+            preco: precoAtualizado
         })
-        .catch(err => {
-            console.error('Erro ao obter lista de produtos:', err);
-            // Adicione o tratamento de erro adequado aqui
-        });
+            .then(res => {
+                alert(res.data.message);
+            })
+            .catch(err => {
+                alert(err.response.data.message);
+            })
+    } else {
+        alert('Todos os campos precisam ser preechidos!');
+    }
+
 };
-
-formAtualizarProduto.addEventListener('submit', atualizarProduto);
-
 
 formAtualizarProduto.addEventListener('submit', atualizarProduto);
