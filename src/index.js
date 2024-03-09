@@ -53,7 +53,7 @@ app.get('/produtos', (req, res) => {
 })
 
 // PUT - UPDATE
-app.put('/produto/:nomeProduto', (req, res) => {
+app.put('/produtos/:nomeProduto', (req, res) => {
     const nomeProduto = req.params.nomeProduto;
     const data = req.body;
     const novoNome = data.nome;
@@ -70,8 +70,9 @@ app.put('/produto/:nomeProduto', (req, res) => {
             novoPreco
         }
 
-        listaProdutos[produtoAtualizar] = produtoAtualizado;
-        
+        produtoAtualizar.nome = novoNome;
+        produtoAtualizar.preco = novoPreco;
+
         res.status(201).send({message: 'Produto Atualizado!', data: produtoAtualizado});
 
     } catch (error) {
