@@ -86,18 +86,9 @@ const deletarProduto = (e) => {
     e.preventDefault();
     const nomeProdutoDeletar = document.querySelector('input[name="produtoDeletar"]').value;
 
-    api.get('/produtos')
+    api.delete(`/produtos/${nomeProdutoDeletar}`)
         .then(res => {
-            const lista = res.data.listaProdutos;
-            const indice = lista.findIndex(produto => nomeProdutoDeletar === produto.nome);
-            api.delete(`/produtos/${nomeProdutoDeletar}`)
-                .then(res => {
-                    lista.splice(indice, 1);
-                    alert(res.data.message);
-                })
-                .catch(err => {
-                    console.log(err.response.data);
-                })
+            alert(res.data.message);
         })
         .catch(err => {
             alert(err.response.data.message);
