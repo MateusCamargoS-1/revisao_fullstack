@@ -1,6 +1,5 @@
 // POST
 const formCriaProduto = document.getElementById('formCriarProduto');
-const btnCriarProduto = document.getElementById('btnCriarProduto');
 
 const criarProduto = (e) => {
     e.preventDefault();
@@ -24,7 +23,6 @@ formCriaProduto.addEventListener('submit', criarProduto);
 
 // GET
 const formListarProdutos = document.getElementById('listarProdutos');
-const btnListarProdutos = document.getElementById('btnListarProdutos');
 
 const listarProdutos = (e) => {
     e.preventDefault();
@@ -52,7 +50,6 @@ formListarProdutos.addEventListener('submit', listarProdutos);
 
 // PUT
 const formAtualizarProduto = document.getElementById('atualizarProduto');
-const btnAtualizarProduto = document.getElementById('btnAtualizarProduto');
 
 const atualizarProduto = (e) => {
     e.preventDefault();
@@ -80,3 +77,16 @@ const atualizarProduto = (e) => {
 };
 
 formAtualizarProduto.addEventListener('submit', atualizarProduto);
+
+// DELETE
+
+const formDeletarProduto = document.getElementById('deletarProduto');
+const btnDeletar = document.getElementById('btnDeletar');
+
+const deletarProduto = () => {
+    const nomeProdutoDeletar = document.querySelector('input[name="produtoDeletar"]');
+    
+    api.delete(`/produtos/${nomeProdutoDeletar}`)
+
+}
+formDeletarProduto.addEventListener('submit', deletarProduto);
