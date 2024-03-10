@@ -38,7 +38,7 @@
                 <form id="formCriarProduto">
                     <input type="text" name="nomeProduto" placeholder="Nome do Produto"><br><br>
                     <input type="text" name="precoProduto" placeholder="Preço do Produto"><br><br>
-                    <button id="btnCriarProduto" onclick="criarProduto(event);">Criar Produto</button><br><br>
+                    <button onclick="criarProduto(event);">Criar Produto</button><br><br>
                 </form>
             </fieldset>
         </section><br>
@@ -46,7 +46,7 @@
             <fieldset>
                 <legend>Listar Produtos</legend>
                 <form id="listarProdutos">
-                    <button id="btnListarProdutos">Listar todos os produtos</button>
+                    <button>Listar todos os produtos</button>
                 </form>
                 <ul id="listaProdutos">
                 </ul>
@@ -66,9 +66,9 @@
         <section>
             <fieldset>
                 <legend>Deletar Produto</legend>
-                <form>
+                <form id="deletarProduto">
                     <input type="text" name="produtoDeletar" placeholder="Nome do Produto para Deletar"><br><br>
-                    <button>Deletar Produto</button>
+                    <button onclick="deletarProduto()">Deletar Produto</button>
                 </form>
             </fieldset>
         </section>
