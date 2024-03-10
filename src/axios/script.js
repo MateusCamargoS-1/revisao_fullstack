@@ -58,7 +58,7 @@ const atualizarProduto = (e) => {
     const nomeAtualizado = document.querySelector('input[name="nomeProdutoAtualizar"]').value;
     const precoAtualizado = document.querySelector('input[name="precoProdutoAtualizar"]').value;
 
-    if(nomeParaAtualizar && nomeAtualizado && precoAtualizado) {
+    if (nomeParaAtualizar && nomeAtualizado && precoAtualizado) {
 
         api.put(`/produtos/${nomeParaAtualizar}`, {
             nome: nomeAtualizado,
@@ -81,12 +81,28 @@ formAtualizarProduto.addEventListener('submit', atualizarProduto);
 // DELETE
 
 const formDeletarProduto = document.getElementById('deletarProduto');
-const btnDeletar = document.getElementById('btnDeletar');
 
-const deletarProduto = () => {
-    const nomeProdutoDeletar = document.querySelector('input[name="produtoDeletar"]');
-    
-    api.delete(`/produtos/${nomeProdutoDeletar}`)
+const deletarProduto = (e) => {
+    e.preventDefault();
+    const nomeProdutoDeletar = document.querySelector('input[name="produtoDeletar"]').value;
+
+    api.get('/produtos')
+        .then(res => {
+            const lista = res.data.listaProdutos;
+            const indice = lista.findIndex(produto => nomeProdutoDeletar === produto.nome);
+            api.delete(`/produtos/${nomeProdutoDeletar}`)
+                .then(res => {
+                    lista.splice(indice, 1);
+                    alert(res.data.message);
+                })
+                .catch(err => {
+                    console.log(err.response.data);
+                })
+        })
+        .catch(err => {
+            alert(err.response.data.message);
+        })
 
 }
+
 formDeletarProduto.addEventListener('submit', deletarProduto);
