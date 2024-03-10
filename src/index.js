@@ -81,7 +81,7 @@ app.put('/produtos/:nomeProduto', (req, res) => {
 })
 
 // DELETE - DELETAR
-app.delete('/produto/:nomeProduto', (req, res) => {
+app.delete('/produtos/:nomeProduto', (req, res) => {
     const nomeProduto = req.params.nomeProduto;
 
     try {
